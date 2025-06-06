@@ -1,0 +1,17 @@
+**CHANGELOG**  
+
+- 🚀 **Enhancements**:  
+  - Added support for injecting additional variables when CPC servers start/connect.  
+  - Improved ModbusTCP variable integration with OPC UA Server.  
+  - Introduced POSIX Message Queue for intermediate partition requests.  
+
+- 🛠 **Fixes & Stability**:  
+  - Fixed starvation and semaphore collision in the interface partition.  
+  - Improved reconnection logic (ModbusTCP: every 30s).  
+  - Added warning when SHM usage exceeds 90%.  
+  - Resolved OPC UA object errors and logging confusion.  
+
+- 🧹 **Cleanup & Maintenance**:  
+  - Refactored and removed deprecated code.  
+  - Improved error handling for XML files.  
+  - Updated README and documentation.

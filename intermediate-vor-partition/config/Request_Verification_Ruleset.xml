@@ -1,0 +1,22 @@
+<ruleset>
+<!--    <rule id="1">-->
+<!--        <description>Issuer must be authenticated and authorized</description>-->
+<!--        <condition>request.issuer_id in ['issuer_1', 'issuer_2'] and request.credentials == 'valid_credentials'</condition>-->
+<!--    </rule>-->
+    <rule id="1">
+        <description>Request description must not be empty</description>
+        <condition>bool(request.description)</condition>
+    </rule>
+    <rule id="2">
+        <description>Priority must be a positive integer</description>
+        <condition>request.priority &gt; 0</condition>
+    </rule>
+    <rule id="3">
+        <description>Request must contain at least one parameter</description>
+        <condition>bool(request.parameters)</condition>
+    </rule>
+    <rule id="4">
+        <description>Modification field must not be empty</description>
+        <condition>bool(request.modification)</condition>
+    </rule>
+</ruleset>

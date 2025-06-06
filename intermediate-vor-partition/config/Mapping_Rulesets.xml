@@ -1,0 +1,66 @@
+<MappingRuleSets> 
+    <MappingRuleSet name="Motor Speed Configuration">
+        <Rule id="Rule_101">
+            <TriggerCondition>Set Motor Speed</TriggerCondition>
+            <ChangeDescription>Configure Motor Speed</ChangeDescription>
+            <EndpointIdentifier>MotorSpeed_SP</EndpointIdentifier>
+            <UnitOfChange>RPM</UnitOfChange>
+            <MappingVerificationConstraint>&lt;= 900</MappingVerificationConstraint>
+        </Rule>
+    </MappingRuleSet>
+
+    <MappingRuleSet name="flow rate adjustment">
+        <Rule id="Rule_201">
+            <TriggerCondition>Any flow rate adjustment request</TriggerCondition> 
+            <ChangeDescription>Ensure the mixer is in operation</ChangeDescription>
+            <EndpointIdentifier>Mixer_SP</EndpointIdentifier>
+            <UnitOfChange>unitless</UnitOfChange>
+            <MappingVerificationConstraint>&gt;= 0</MappingVerificationConstraint>
+        </Rule>
+        
+        <Rule id="Rule_202">
+            <TriggerCondition>Need to increase flow rate of Material A</TriggerCondition>
+            <ChangeDescription>Change the pump's power</ChangeDescription>
+            <EndpointIdentifier>Pump_A_Power</EndpointIdentifier>
+            <UnitOfChange>kw</UnitOfChange>
+            <MappingVerificationConstraint>&lt; 12</MappingVerificationConstraint>
+        </Rule>
+        
+        <Rule id="Rule_203">
+            <TriggerCondition>Maintain A:B = 1:3</TriggerCondition>
+            <ChangeDescription>Change the pump's power</ChangeDescription>
+            <EndpointIdentifier>Pump_B_Power</EndpointIdentifier>
+            <UnitOfChange>kw</UnitOfChange>
+            <MappingVerificationConstraint>&lt; 16</MappingVerificationConstraint>
+        </Rule>
+        
+        <Rule id="Rule_204">
+            <TriggerCondition>Increase total flow by 5 L/min corresponding to a 1% power increase</TriggerCondition>
+            <ChangeDescription>Increase heating power by 8%</ChangeDescription>
+            <EndpointIdentifier>Heater_Power</EndpointIdentifier>
+            <UnitOfChange>kw</UnitOfChange>
+            <MappingVerificationConstraint>&lt; 18</MappingVerificationConstraint>
+        </Rule>
+    </MappingRuleSet>
+</MappingRuleSets>
+
+
+
+<!-- 
+    Final version:
+    <Rule id="Rule_204">
+        <TriggerCondition>Increase total flow by 5 L/min corresponding to a 1% power increase</TriggerCondition>
+        <ChangeDescription>Increase heating power by 8%</ChangeDescription>
+        <EndpointIdentifier>Heater_Power</EndpointIdentifier>
+        <UnitOfChange>kw</UnitOfChange>
+        <MappingVerificationConstraint>&lt; 8</MappingVerificationConstraint>
+    </Rule>
+-->
+
+<!-- 
+    &lt; 表示 <
+    &gt; 表示 >
+    &amp; 表示 &（和符号）
+    &quot; 表示 "（双引号）
+    &apos; 表示 '（单引号）
+-->

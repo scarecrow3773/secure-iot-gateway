@@ -1,0 +1,73 @@
+// Define policies (p): who can do what on which resource
+// Format: p, user/role, resource, action
+
+// Admin has full access to all resources
+p, Admin, Ejector, extend
+p, Admin, Ejector, retract
+p, Admin, Drill, turn_on
+p, Admin, Drill, turn_off
+p, Admin, Motor, turn_on
+p, Admin, Motor, turn_off
+p, Admin, FumeExtractionSystem, turn_on
+p, Admin, FumeExtractionSystem, turn_off
+
+p, Admin, MotorSpeed_SP, 900
+p, Admin, Mixer_SP, 5
+p, Admin, Mixer_SP, 7
+p, Admin, Pump_A_Power, 9.4
+p, Admin, Pump_A_Power, 10.5
+p, Admin, Pump_B_Power, 9.4
+p, Admin, Pump_B_Power, 10.5
+p, Admin, Heater_Power, 17.5
+p, Admin, Heater_Power, 20.0
+
+// PlantOperator can operate basic machinery
+p, PlantOperator, Motor, turn_on
+p, PlantOperator, Motor, turn_off
+p, PlantOperator, FumeExtractionSystem, turn_on
+p, PlantOperator, FumeExtractionSystem, turn_off
+
+p, PlantOperator, MotorSpeed_SP, 900
+p, PlantOperator, Mixer_SP, 5
+p, PlantOperator, Mixer_SP, 7
+p, PlantOperator, Pump_A_Power, 9.4
+p, PlantOperator, Pump_A_Power, 10.5
+p, PlantOperator, Pump_B_Power, 9.4
+p, PlantOperator, Pump_B_Power, 10.5
+p, PlantOperator, Heater_Power, 17.5
+p, PlantOperator, Heater_Power, 20.0
+
+// MaintenancePersonnel can operate all machinery for maintenance
+p, MaintenancePersonnel, Ejector, extend
+p, MaintenancePersonnel, Ejector, retract
+p, MaintenancePersonnel, Drill, turn_on
+p, MaintenancePersonnel, Drill, turn_off
+
+p, MaintenancePersonnel, MotorSpeed_SP, 750
+p, MaintenancePersonnel, MotorSpeed_SP, 900
+p, MaintenancePersonnel, Mixer_SP, 5
+p, MaintenancePersonnel, Mixer_SP, 7
+p, MaintenancePersonnel, Pump_A_Power, 9.4
+p, MaintenancePersonnel, Pump_A_Power, 10.5
+p, MaintenancePersonnel, Pump_B_Power, 9.4
+p, MaintenancePersonnel, Pump_B_Power, 10.5
+p, MaintenancePersonnel, Heater_Power, 17.5
+p, MaintenancePersonnel, Heater_Power, 20.0
+
+// Define resource groups (g2): resource grouping
+g2, Ejector, MachineryGroup
+g2, Drill, MachineryGroup
+g2, Motor, MachineryGroup
+g2, FumeExtractionSystem, SafetyGroup
+
+// Define user-role assignments (g): user inheritance
+g, john, Admin
+g, sarah, PlantOperator
+g, mike, MaintenancePersonnel
+g, david, PlantOperator
+g, lisa, MaintenancePersonnel
+
+// Role-role inheritance
+g, PlantOperator, SafetyOperator
+p, SafetyOperator, SafetyGroup, turn_on
+p, SafetyOperator, SafetyGroup, turn_off

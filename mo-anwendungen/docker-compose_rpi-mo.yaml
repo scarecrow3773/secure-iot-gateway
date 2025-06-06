@@ -1,0 +1,10 @@
+services:
+
+# Central M+O Application
+  central-mo-client:
+    container_name: central-mo-client
+    build: central-mo-client/
+    depends_on:
+      interface-partition: 
+        condition: service_started
+    attach: true

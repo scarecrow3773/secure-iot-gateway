@@ -50,8 +50,6 @@ class OpcUaClient:
         cert_base = Path(__file__).parent
 
         policy = self.security_settings['policy']
-        # TODO: User authentication via username and password is not implemented for FreeOpcUa Server. 
-        # This is supported by other OSS or commercial OPC UA servers.
         if self.security_settings['username'] is not None and self.security_settings['password'] is not None:
             self.client.set_user(self.security_settings['username'])
             self.client.set_password(self.security_settings['password'])
@@ -88,14 +86,7 @@ class OpcUaClient:
                 _logger.error(f"Error connecting to {self.server_app_uri}.")
 
 
-    # async def retry_connection(self) -> None:
-    #     try:
-    #         await self.client.connect()
-    #         self.connected = True
-    #         _logger.info(f"Connected to {self.server_app_uri}")
-    #     except Exception as e:
-    #         self.connected = False
-    #         _logger.error(f"Error connecting to {self.server_app_uri}.")
+
     async def retry_connection(self) -> None:
         """
         Retry to connect to the OPC UA server with a minimum interval between attempts.
@@ -115,7 +106,7 @@ class OpcUaClient:
             _logger.error(f"Reconnection to {self.server_app_uri} failed.")
 
 
-    async def read_value(self, node_id: ua.NodeId) -> tuple[str | None, Optional[any], str | None]: # BUG: Why we have to use Optional[any] instead of any? idk...
+    async def read_value(self, node_id: ua.NodeId) -> tuple[str | None, Optional[any], str | None]:
         """
         Read a value from an OPC UA node
         :param node_id: The OPC UA node ID to read from

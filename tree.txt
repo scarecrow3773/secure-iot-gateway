@@ -193,7 +193,6 @@ secure-iot-gateway
     \---central-mo-client
         |   Dockerfile
         |   main.py
-        |   main_old.py
         |   requirements.txt
         |   test_requests.py
         |
